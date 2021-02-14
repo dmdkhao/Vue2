@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>{{fullName}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      firstName: 'むぎ',
+      lastName: 'あわや'
+    },
+    computed:{    //用computed可以设定属性计算
+      fullName: function(){
+        return this.lastName + " " +this.firstName;
+      }
+    }
+
+  })
+
+</script>
+
+</body>
+</html>

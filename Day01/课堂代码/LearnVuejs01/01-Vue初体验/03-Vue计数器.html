@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <h2>当前计数: {{counter}}</h2>
+        <button @click="increment">+</button>
+        <button @click="subtraction">-</button><!--这里的"@click"相当于"v-on:click"-->
+        <button v-on:click="counter++">++</button>
+    </div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const appEl = new Vue({
+        el: '#app',
+        data: {
+            counter: 0
+        },
+        methods: {
+            increment: function(){
+                console.log('increment被执行');
+                this.counter++;
+            },
+            subtraction: function(){
+                console.log('subtraction被执行');
+                this.counter--;
+            }
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>总价格: {{totalPrice}}</h2>
+  <h2>总价格: {{getTotalPrice()}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      books: [
+          {bid: 1001, btitle: '书籍A', price: 100},
+          {bid: 1002, btitle: '书籍B', price: 50},
+          {bid: 1003, btitle: '书籍C', price: 150},
+          {bid: 1004, btitle: '书籍D', price: 20},
+          {bid: 1005, btitle: '书籍E', price: 199}
+      ]
+    },
+    computed: {
+      totalPrice: function(){   //调用一次，以后再执行也不会重新调用，而是到内存中找结果
+        let count = 0;
+        for(let book of this.books){  //拿到的book直接就是books里面的元素
+          count +=book.price;
+        }
+        return count;
+      }
+    },
+    methods: {
+      getTotalPrice: function(){    //每次调用都会执行一次
+        let count = 0;
+        for(let i in this.books){
+          count += this.books[i].price;
+        }
+        return count;
+      }
+    }
+
+  })
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div id="app">
+      <h1>{{message}}</h1>
+      <h1>{{message + name}}</h1>
+    <img v-bind:src="mySrc" alt="">   <!-- v-bind可以动态绑定数据到元素的属性上 -->
+    <a :href="myA">百度一下</a>  <!-- 单写一个:是v-bind的语法糖 -->
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+      let appEl = new Vue({
+          el: '#app',
+          data: {
+            message: "你好",
+            name: "张皓",
+            mySrc: "https://img11.360buyimg.com/n1/jfs/t1/150848/5/18001/356910/601386bdE0d1fa2ba/dbcbbce91b15413a.jpg",
+            myA: "http://www.baidu.com"
+          },
+      });
+
+  </script>
+</body>
+</html>

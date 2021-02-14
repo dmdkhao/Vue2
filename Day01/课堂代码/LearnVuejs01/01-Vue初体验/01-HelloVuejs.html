@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h1>{{message}}</h1>
+    <h1>{{name}}</h1>
+    <h1>{{gender}}</h1>
+    <h1>{{myTest}}</h1>
+
+</div>
+<script src="../js/vue.js"  ></script>
+<script>
+    //let(在ES6中用于声明变量)
+    //const(在ES6中用于声明常量)
+    //var(具有缺陷：1.没有变量的作用域)
+    //开始采用Vue的 “声明式编程”
+    const appElement = new Vue({
+        el : '#app',//将此appElement挂在到id=app的元素上
+        data : {//用于存储一些数据
+            message : '你好，欢迎来到Vue',
+            name : '张皓',
+            gender : '男'
+        }
+    })
+
+    //若不使用Vue的“声明式编程”，也可以使用以前Js或者jQuery常用的“命令式编程”，但渐渐人们比较喜欢声明式编程。
+    //若要替换div中的message的话，命令式编程如下。
+    //1. 获取id=app的元素
+
+    //2. 声明message的内容
+
+    //3. 修改对应的元素
+
+    //4. 重新显示元素。
+
+</script>
+
+</body>
+</html>
