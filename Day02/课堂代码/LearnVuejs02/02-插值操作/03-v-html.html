@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h1>{{message}}</h1>
+    <h1>{{message + name}}</h1>
+    <h1 v-html="abc"></h1>  <!-- 添加了v-html后，就会将冒号里的数据当成htmlElement解析 -->
+    <h1> {{abc}} </h1>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    let appEl = new Vue({
+        el: '#app',
+        data: {
+          message: "你好",
+          name: "张皓",
+          abc: '<a href="www.baidu.com">百度</a>'
+        },
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div id="app">
+
+    <!--  当数组里是字符串的话，那还不如去使用原本的class  -->
+    <h2 class="title" :class="['active', 'line']">你好</h2>
+
+    <!--  通过数组形式加载class  -->
+    <h2 class="title" :class="[active, line]">你好</h2>
+
+    <!--  利用函数返回数组形式的class  -->
+    <h2 class="title" :class="getClasses()">你好</h2>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    let appEl = new Vue({
+      el: '#app',
+      data: {
+        active: 'aaaaaa',
+        line: 'bbbbb'
+      },
+      methods: {
+        getClasses: function (){
+          return [this.active, this.line];
+        }
+      }
+    });
+
+  </script>
+</body>
+</html>
