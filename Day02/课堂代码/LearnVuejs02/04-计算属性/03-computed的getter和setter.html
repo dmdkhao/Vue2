@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+  <h2>{{fullName}}</h2>
+  <h2>{{nickName}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      firstName: "hao",
+      lastName: "zhang",
+      title: "DD",
+      position: "King"
+    },
+    computed: {
+      fullName: {
+        set(newName){ //一般情况是空的（95%情况），因此一般不写set方法，只写get方法，由此得出最终简写如下。
+          console.log("set被调用");
+          let names = newName.split(" ");
+          this.firstName = names[0];
+          this.lastName = names[1];
+        },get(){
+          console.log("get被调用");
+          return this.firstName + " " +this.lastName;
+        }
+      },
+      nickName(){     //等同于 nickName: function(){}   缩写后直接写成nickName
+        return this.title + " " + this.position;
+      }
+
+    }
+  })
+
+
+</script>
+</body>
+</html>

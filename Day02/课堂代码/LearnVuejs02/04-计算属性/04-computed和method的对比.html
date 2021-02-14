@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+  computed中的对象在被首次调用get()时会将结果存入缓存中，只要get()本身没发生变化，则后续不会在被调用也不会执行。
+  methods中的方法只要被调用就会执行。
+  因此尽量多使用computed。
+ -->
+<div id="app">
+  <h2>{{fullName}}</h2>
+  <h2>{{fullName}}</h2>
+  <h2>{{fullName}}</h2>
+  <h2>{{fullName}}</h2>
+  <h2>{{getFullName()}}</h2>
+  <h2>{{getFullName()}}</h2>
+  <h2>{{getFullName()}}</h2>
+  <h2>{{getFullName()}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      firstName: "hao",
+      lastName: "zhang",
+    },
+    computed: {
+      fullName(){
+        console.log("fullName被调用");     //打印1次
+        return this.firstName + " " + this.lastName;
+      }
+    },
+    methods: {
+      getFullName(){
+        console.log("getFullName被调用");    //打印4次
+        return this.firstName + " " + this.lastName;
+      }
+    }
+
+  })
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  const name = "zhang";
+  const age = "21";
+  const sex = "男";
+
+  //ES5对象写法
+  var obj5 = {
+    name : name,
+    age: age,
+    sex: sex,
+    run: function(){
+      console.log( name + "在跑步");
+    }
+  };
+  console.log(obj5);
+  obj5.run();
+
+  //ES6写法
+  const obj6 = {
+    name,
+    age,
+    sex,
+    run(){
+      console.log(name + "在跑步");
+    }
+  }
+  console.log(obj6);
+  obj6.run();
+</script>
+
+</body>
+</html>
