@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <h2>{{message}}</h2>
+  <button v-on:click="btn1Click">按钮1</button>  <!-- 不写括号，不传参 -->
+  <button @click="btn1Click()">按钮1.2</button>   <!-- 写括号，不传参 -->
+
+  <button @click="btn2Click()">按钮2</button>   <!-- 需要传一个参，但是没传参，但是写了括号，此时undefined -->
+  <button @click="btn2Click">按钮2.2</button>   <!-- 需要传一个参，但是没传参，没有括号，此时vue会默认传入浏览器的event -->
+
+  <button @click="btn3Click('zhanghao',event)">按钮3</button>   <!-- 传入多个参数时，若需要浏览器的event则无法直接写event -->
+  <button @click="btn3Click('zhanghao',$event)">按钮3</button>   <!-- 而是需要在event前面加上$ -->
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好'
+    },
+    methods: {
+      btn1Click() {
+        console.log("按钮被点击");
+      },
+      btn2Click(event) {
+        console.log(event);
+      },
+      btn3Click(name,event) {
+        console.log(name);
+        console.log(event);
+      }
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

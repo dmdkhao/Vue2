@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app" @click="divClick()">
+
+  <button @click="btn1Click()">按钮1</button>
+  <button @click.stop="btn1Click()">阻止冒泡</button>
+
+  <button @click.once="btn1Click()">只触发一次</button>  <!-- once会让本元素的事件只触发一次 -->
+
+  <form action="www.baidu.com">
+    <input type="text">
+<!--    <input type="submit"  >-->
+    <input type="submit"  @click.prevent>   <!-- prevent可以阻止默认事件 -->
+  </form>
+
+  <input type="text" @keyup="keyUp()">    <!-- 监听键盘 -->
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好'
+    },
+    methods: {
+      btn1Click(){
+        console.log("按钮被点击");
+      },
+      divClick(){
+        console.log("div被点击");
+      },
+      keyUp(){
+        console.log("键盘弹起");
+      }
+    }
+
+  })
+
+</script>
+
+</body>
+</html>

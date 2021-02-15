@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <ul id="moviesUl">
+        <h1>{{title}}</h1>
+        <li v-for="dada in movies">{{dada}}</li>
+    </ul>
+</div>
+<script src="../js/vue.js"></script> <!-- 引入Vue -->
+<script>
+    const movieEle = new Vue({
+        el : '#moviesUl',
+        data : {
+            title : '电影列表',
+            movies : ['星际穿越', '盗梦空间', '信条', '死亡笔记']
+        }
+    })
+
+</script>
+
+</body>
+</html>

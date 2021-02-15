@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h1 v-once>{{message}}</h1> <!-- 添加once后，即使再改变message，网页中这里的内容也不会被改变 -->
+    <h1>{{message + name}}</h1>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    let appEl = new Vue({
+        el: '#app',
+        data: {
+          message: "你好",
+          name: "张皓"
+        },
+    });
+
+</script>
+</body>
+</html>

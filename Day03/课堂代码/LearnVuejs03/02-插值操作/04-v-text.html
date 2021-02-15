@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h1>{{message}}</h1>
+    <h1>{{message + name}}</h1>
+    <h1 v-text="message">hello</h1> <!-- v-text与mustache大致相同，但v-text会替换掉标签内容并且v-text还很不灵活 -->
+
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    let appEl = new Vue({
+        el: '#app',
+        data: {
+          message: "你好",
+          name: "张皓"
+        },
+    });
+
+</script>
+</body>
+</html>
