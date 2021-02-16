@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2 v-if="isShow">{{message}}</h2> <!-- v-if条件成立时显示该标签 -->
+  <h2 v-else>{{message2}}</h2>        <!-- 当v-if条件不成立时显示该标签 -->
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      message2: '我好',
+      isShow: false
+    }
+
+  })
+</script>
+</body>
+</html>

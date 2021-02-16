@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <h2 v-if="score >= 90">优秀</h2>
+  <h2 v-else-if="score >= 70">良好</h2>
+  <h2 v-else-if="score >= 60">及格</h2>
+  <h2 v-else>不及格</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      score: 55
+    }
+
+  })
+
+</script>
+
+</body>
+</html>

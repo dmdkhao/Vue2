@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    * 数组中哪些方法是响应式的？
+        * push(): 从尾插入元素，可插多个。
+        * pop(): 从尾删除元素。
+        * shift(): 从头删除元素。
+        * unshift(): 从头插入元素，可插多个。
+        * splice(): 功能强大
+            * splice(start,要删除元素的个数,插入的元素1，插入的元素2，插入的元素3.....),从第三个元素开始往后全都是要插入的元素；若不传入第二个参数则从起始元素(不含起始元素)后面的全删。
+        * sort(): 排序
+        * revese(): 反转
+    * 当通过数组下标修改元素时，不是响应式的。
+        * 若还想达到响应式效果，则可以通过splice()完成，或者通过Vue.set(要修改的对象,索引值,修改后的值)
+-->
+<div id="app">
+  <h2>{{message}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好'
+    }
+
+  })
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    * v-if和v-show的区别：
+        * v-if：当条件不成立时，DOM中直接移除本元素。
+        * v-show：当条件不成立时，DOM不会移除该元素，而是将其style=display:none掉，隐藏在页面中。
+    * 因此：当切换频率较高时，应该使用v-show；当切换频率较低时(不常复用)，应该使用v-if。
+-->
+<div id="app">
+  <h2 v-if="isShow" id="if">{{message}}</h2>
+  <h2 v-show="isShow" id="show">{{message}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      isShow: false
+    }
+
+  })
+
+</script>
+
+</body>
+</html>

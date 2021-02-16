@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <ul>
+    <!--  ①直接遍历对象的内容  -->
+    <li v-for="item in student">{{item}}</li>
+  </ul>
+  <ul>
+    <!--  ②获取key和value两个内容时  -->
+    <li v-for="(v,k) in student">{{k}}-{{v}}</li><!-- 注意：value在前面 -->
+  </ul>
+  <ul>
+    <!--  ③获取key和value和index三个内容时  -->
+    <li v-for="(value,key,index) in student">{{index}}-{{key}}-{{value}}</li>
+  </ul>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      student: {
+        name: '张皓',
+        age: 21,
+        gender: "男",
+        height: 183
+      }
+    }
+
+  })
+
+</script>
+
+</body>
+</html>

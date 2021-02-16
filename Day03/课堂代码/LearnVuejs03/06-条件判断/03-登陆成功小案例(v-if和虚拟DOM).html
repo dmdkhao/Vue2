@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    * 切换登陆方式案例
+        * key：
+            * 当Vue内部接收到页面中发生变化时，会线进行”虚拟DOM“渲染，将渲染完成的“虚拟DOM”与原本的DOM进行对比，尽可能的复用页面冲的元素，而不是直接创建元素。
+            * 因此key值相同的元素会进行复用。
+            * 若想让元素不被进行复用，则设置不同的key即可。
+-->
+
+<div id="app">
+  <span v-if="usernameWay">
+    <label for="username">用户名登陆</label>
+    <input type="text" id="username" placeholder="请输入用户名" key="username">
+  </span>
+  <span v-else>
+    <label for="email">邮箱登录</label>
+    <input type="text" id="email" placeholder="请输入邮箱" key="email">
+  </span>
+  <button @click="changeLoginWay">切换登陆方式</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      usernameWay: true
+    },
+    methods: {
+      changeLoginWay(){
+        this.usernameWay = !this.usernameWay;
+      }
+    }
+
+  })
+
+</script>
+
+</body>
+</html>

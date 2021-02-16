@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    * 使用v-for时是否应该添加key？
+        * 官方推荐使用v-for时添加key，原因是方便虚拟DOM进行复用。.
+
+    * 例：在已存在的letter['a','b','c','d','e']中第二个元素(b)后面添加'f'
+        * appEl.letters.splice(2,0,'f');
+        * v-for不加key：
+            * c,d,e三个元素无法被复用，而是重新创建。
+        * v-for加key：
+            * c,d,e三个元素可以被复用。
+        * 图解
+    * 给for元素添加key属性可以提高元素的复用率。因此：key的作用主要是为了搞笑地更新虚拟DOM。
+-->
+<div id="app">
+  <ul>
+    <li v-for="(item,index) in letters" v-bind:key="item">{{item}}</li>
+  </ul>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      letters: ['a','b','c','d','e']
+    }
+
+  })
+
+</script>
+
+</body>
+</html>
