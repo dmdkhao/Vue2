@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    * v-model修饰符：
+        * v-model.lazy：在文本框等元素中，失去焦点时再更新数据。
+        * v-model.number：v-model默认绑定数据类型为String，但使用本修饰符则可以转换为数字类型。
+        * v-model.trim：去掉内容中左右的空格
+    * 注：可连着使用多个
+
+-->
+
+<div id="app">
+<!-- v-model.lazy -->
+  <input type="text" v-model.lazy="lazy">lazy-敲下回车后再更新
+  <h2>{{lazy}}</h2>
+  <br>
+  <input type="text" v-model.number="number">number-判断类型
+  <h2>{{typeof number}}</h2>
+  <br>
+  <input type="trim" v-model.trim.lazy="trim">trim-去掉两边的空格
+  <h2>{{trim}}</h2>
+
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      lazy: "",
+      number: "",
+      trim: ""
+
+    }
+
+  })
+
+</script>
+
+
+</body>
+</html>

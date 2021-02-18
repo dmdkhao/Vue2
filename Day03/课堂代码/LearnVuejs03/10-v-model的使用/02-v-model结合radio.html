@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    * v-model与radio的value属性双向绑定
+        * v-model可替代radio的name属性
+-->
+<div id="app">
+  <label for="genderRadio">
+  <input id="genderRadio" type="radio" name="gender" value="man2" v-model="gender"> man
+  </label>
+
+  <label for="genderRadio2">
+  <input id="genderRadio2" type="radio" name="gender" value="women" v-model="gender"> women
+  </label>
+  <h2>{{gender}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      gender: "man"
+    }
+
+  })
+
+</script>
+</body>
+</html>

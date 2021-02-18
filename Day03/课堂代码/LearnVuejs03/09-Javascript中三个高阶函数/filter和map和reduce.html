@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    JavaScript中有三个操作数据的高阶函数：
+        * filter(function(n){})：根据函数返回结果对数组进行过滤。filter(n => n<100)
+            * 返回true：保留数据。
+            * 返回false：删除数据。
+
+        * map(function(n){})：对数组中的数据逐个进行操作。map(n => n*2)
+            * 函数中的返回值就是新数组的元素。
+
+        * reduce(function(pre,n),0)：对数组内容进行汇总。 reduce((pre,n) => pre+n,0)
+            * 第一个参数：回调函数(上一次的结果，数组中的元素)。
+            * 第二个参数：初始值。
+            * 灵活运用本函数可以达到意想不到的功能。
+
+-->
+<div id="app">
+  <h2>re-{{myArrays}}</h2>
+  <h2>filter-{{newArray}}</h2>
+  <h2>map-{{mapArray}}</h2>
+  <h2>reduceArray-{{reduceArray}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      myArrays: [10,20,90,541,22,369,123,60,50],
+    },
+    computed: {
+      newArray(){
+        return this.myArrays.filter(n => n<100);
+      },
+      mapArray(){
+        return this.myArrays.map(n =>n*2);
+      },
+      reduceArray(){
+        return this.myArrays.reduce(function(pre,n){
+          return pre + n;
+        },0)
+      }
+    }
+
+
+  })
+
+  let array = [100,25,30,366,12,96,102,123,32];
+  let filter = array.filter(n => n<100);
+  console.log(filter);
+
+  let map = filter.map(n => n/2);
+  console.log(map);
+
+  let reduce = map.reduce((pre,n) => pre + n,100);
+  console.log(reduce);
+
+
+</script>
+
+
+
+</body>
+</html>

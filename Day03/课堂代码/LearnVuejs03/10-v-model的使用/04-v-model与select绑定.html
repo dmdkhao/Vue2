@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    * v-model与select双向绑定，数据类型默认为String数组。
+-->
+<div id="app">
+
+  <select v-model="fruit" multiple>
+    <option>苹果</option>
+    <option>香蕉</option>
+    <option>柑橘</option>
+    <option>火龙果</option>
+  </select>
+  <h2>{{fruit}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      fruit: []
+    }
+
+  })
+
+</script>
+</body>
+</html>

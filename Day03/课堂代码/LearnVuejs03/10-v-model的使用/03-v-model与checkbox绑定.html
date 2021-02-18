@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    * v-model与checkbox绑定，此时需要分情况讨论：
+        * 单选：当只有一个checkbox(同意用户协议):
+            * 此时v-model绑定的值是boolean类型。
+        * 多选：
+            * 此时v-model绑定的值是数组类型，且内部是String。
+            * 按照点击顺序添加元素。
+
+-->
+<div id="app">
+<!-- 单选情况 -->
+  <input type="checkbox" v-model="isAgreement">同意用户协议
+  <button :disabled="!isAgreement">下一步</button>
+
+<!-- 多选情况 -->
+  <input type="checkbox" v-model="hobby" value="足球">足球
+  <input type="checkbox" v-model="hobby" value="篮球">篮球
+  <input type="checkbox" v-model="hobby" value="台球">台球
+  <input type="checkbox" v-model="hobby" value="排球">排球
+  <input type="checkbox" v-model="hobby" value="高尔夫球">高尔夫球
+  <h2>{{hobby}}</h2>
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      isAgreement: false,
+      hobby: []
+    }
+
+  })
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    * v-model可以将数据和表单进行双向绑定,
+        * v-model相当于两个单向绑定相加的结果。
+            * v-bind:value  +  v-on:input
+-->
+<div id="app">
+  <form>
+    <input type="text" v-model="message" >
+    <button @click.prevent>不提交</button>
+  </form>
+  <h2>{{message}}</h2>
+
+  <form action="">
+    <!--  :value + @input  -->
+    <input type="text" v-bind:value="message2" v-on:input="message2 = $event.target.value">
+  </form>
+  <h2>{{message2}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      message2: 'hello'
+
+    }
+
+  })
+
+</script>
+</body>
+</html>
