@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    * 父组件向子组件传递数据
+        * 语法：使用props属性。
+        * 原理：
+          1. 父组件声明好数据。
+          2. 使用子组件，并将"子组件属性"与"父组件属性"通过v-bind绑定。
+          3. 在子组件内部即可随意使用。
+          看起来就好像是：父组件声明data -> 在子组件标签中将data与子组件的prop通过v-bind绑定 -> 子组件使用prop
+
+    * prop类型限制：prop默认是String类型，但也可以限定它的数据类型，并且还有很多种写法。
+        * 支持的类型：
+            * String、Number、Array、Boolean、Object、Data、Function、Symbol、自定义类型。
+        * 写法：
+          1. 不限定  prop: ['cmovies','cmessage']
+          2. 限定类型 prop: {cmovies: Array, cmessage: String}
+          3. 写成对象形式，并限定数据类型，默认值等属性。 prop: {cmessage: {type: String, default: ""},cmovies: {}}。
+
+    * prop语法：
+        props: {
+          cmovies: {
+            type: Array,    <-这里规定类型为Array
+            default(){      <-如果类型为Array或Object，则默认值需要以函数返回的方式表示
+              return []
+            },
+            required: true  <-必须给cmovies传值
+          }
+        }
+
+-->
+<div id="app">
+  <cpn1 v-bind:cmessage="message" :cmovies="movies"></cpn1>
+</div>
+
+<template id="cpn1T">
+  <div>
+    <h2>{{cmessage}}</h2>
+    <ul>
+      <li v-for="item in cmovies">{{item}}</li>
+    </ul>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  Vue.component("cpn1",{
+    template: "#cpn1T",
+    data(){
+      return {}
+    },
+    // props: ['cmessage','cmovies']
+    // props: {
+    //   cmessage: String,
+    //   cmovies: Array
+    // }
+    props: {
+      cmessage: {
+        type: String,
+        default: "",
+        required: true //必传
+      },
+      cmovies: {
+        type: Array,
+        default(){
+          return []
+        },
+        required: false
+      }
+
+    }
+  })
+
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      movies: ['A','B','C','d']
+    }
+
+  })
+
+</script>
+
+
+
+
+</body>
+</html>

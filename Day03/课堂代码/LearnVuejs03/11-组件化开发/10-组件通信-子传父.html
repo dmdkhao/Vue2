@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    * 子组件向父组件传递数据(事件)
+        * 传递过程
+            1. 子组件产生事件。
+            2. 子组件在自己的methods中通过this.$emit('发射出去的事件名',参数)的方式发射事件给父组件。
+            3. 父组件通过 v-on.发射出去的事件名 来监听子组件所发射出来的事件。
+            4. 在父组件的methods中处理该事件。
+        * 需要注意驼峰问题。
+    * 总结：
+        * 父向子通信：
+            * 子组件的props可以预先定义数据。
+            * 在使用子组件的标签内通过 v-bind:子组件数据名="父组件的数据名" 来传递数据。
+            * 子组件内部使用数据。
+        * 子向父通信：
+            * 子组件内部发生事件后，通过this.$emit('传递出的事件名',参数) 向父组件发射事件。
+            * 父组件通过 v-on:传递出的事件名 来监听子组件发射的事件。
+            * 父组件处理事件。
+-->
+
+<div id="app">
+  <cpn1 :ccategories="categories" @ctfclick="btnClick"></cpn1>
+</div>
+
+<template id="cpnT">
+  <div>
+    <button v-for="item in ccategories"
+          @click="cBtnClick(item)"> {{item.name}}</button>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  const cpn = Vue.component("cpn1",{
+    template: "#cpnT",
+    props: {
+      ccategories: {
+        type: Array,
+        default(){
+          return []
+        },
+        required: true
+      }
+    },
+    methods: {
+      cBtnClick(item){
+        //发射事件
+        this.$emit('ctfclick',item)
+      }
+    }
+  })
+
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      categories: [
+        {id:1001,name:"类别A"},
+        {id:1002,name:"类别B"},
+        {id:1003,name:"类别C"},
+        {id:1004,name:"类别D"},
+      ]
+    },
+    components: {
+      cpn
+    },
+    methods:{
+      btnClick(item){
+        console.log("被点击",item);
+      }
+    }
+
+  })
+
+</script>
+
+</body>
+</html>

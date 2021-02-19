@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    * 若子组件prop内使用驼峰标识名命，则标签中v-bind部分需要用“-”来连接驼峰部位。
+-->
+
+<div id="app">
+  <cpn1 :c-message="message" :c-movies="movies"></cpn1>
+</div>
+
+<template id="cpn1T">
+  <div>
+    <h2>{{cMessage}}</h2>
+    <p>{{cMovies}}</p>
+  </div>
+
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  const cpn = Vue.component("cpn1",{
+    template: "#cpn1T",
+    data(){
+      return {}
+    },
+    props: {
+      cMessage: {
+        type: String,
+        default: "aaa",
+        required: true
+      },
+      cMovies: {
+        type: Object,
+        default(){
+          return {}
+        },
+        required: true
+      }
+    }
+  })
+
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      movies: {
+        name: "杀手",
+        price: 36
+      }
+    },
+    components: {
+      cpn
+    }
+
+  })
+
+</script>
+
+</body>
+</html>
