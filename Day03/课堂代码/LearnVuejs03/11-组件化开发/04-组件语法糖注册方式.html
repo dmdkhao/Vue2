@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    * 组件语法糖：省略掉了Vue.extend({})
+        * 原本是Vue.extend({
+            template: XXXXXX
+        })
+        * 现在直接将template部分当成对象传入给组件注册部分Vue.component()就可以。
+
+-->
+<div id="app">
+  <cpn1></cpn1>
+  <cpn2></cpn2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+
+  //1. 全局组件cpn1的语法糖
+  Vue.component('cpn1',{
+    template: `
+      <div>
+        <h2>cpn1标题</h2>
+        <p>这里是全局组件cpn1</p>
+      </div>
+    `
+  })
+
+  // 2. 局部组件cpn2的语法糖
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好'
+    },
+    components: {
+      cpn2: {
+        template: `
+        <div>
+          <h2>cpn2标题</h2>
+          <p>这里是局部组件cpn2</p>
+        </div>
+        `
+      }
+    }
+
+  })
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    * 父组件和子组件
+        * 创建：子组件构造器在父组件构造器之前声明。
+        * 注册：子组件在父组件内部的components中注册。
+        * 使用：子组件在父组件template中使用。
+        * 需要注意的是，要把自定义组件标签写在div标签内。(目前原因不明，若不写在div标签内的话，子组件不显示且会报错Error compiling template)
+        * 还需要注意的是：每个组件都是在其作用域中有效，比如说本节我将子组件定义在父组件内部，此时若在父组件之外的区域使用子组件则会报错Unknown custom element。
+        * 本节示例中，子组件在父组件内部已经被编译好了，因此在外部使用父组件时会正常显示子组件。
+        * 频繁使用父子组件会产生一棵组件树。
+
+-->
+<div id="app">
+  <cpn2></cpn2>
+  <cpn1></cpn1>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  //1. 创建第一个组件
+  const cpnC1 = Vue.extend({
+    template: `
+      <div>
+        <h1>我是子组件</h1>
+        <p>我是第一个组件</p>
+      </div>
+    `
+  })
+
+  //2. 创建第二个组件
+  const cpnC2 = Vue.extend({
+    template: `
+      <div>
+        <h1>我是父组件</h1>
+        <p>我是第二个组件</p>
+        <cpn1></cpn1>
+      </div>
+    `,
+    components: {
+      cpn1: cpnC1
+    }
+  })
+
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好'
+    },
+    components: {
+      cpn2: cpnC2
+    }
+  })
+</script>
+</body>
+</html>

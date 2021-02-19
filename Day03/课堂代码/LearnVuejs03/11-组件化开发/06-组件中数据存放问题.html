@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    * 组件中的数据存放：
+        * 组件无法访问到Vue对象示例中的data，而是有属于自己专门存放数据的地方。
+        * 组件要想自己存放数据，存放在data中，但data不是key-value形式，而是函数形式。
+        * 个人理解：一个组件是一个整体，具有他专属的解析过程，在这个过程中不涉及到外面的Vue实例，因此无法访问Vue实例中data是正确的。
+-->
+
+<div id="app">
+  <cpn1></cpn1>
+  <cpn1></cpn1>
+  <cpn1></cpn1>
+</div>
+
+<script type="text/x-template" id="cpn1T">
+  <div>
+    <h2>{{message}}</h2>
+    <p>cpn1的内容</p>
+  </div>
+</script>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  Vue.component('cpn1',{
+    template: "#cpn1T",
+    data(){
+      return {
+        message: "组件内部的message"
+      }
+    }
+  })
+
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: 'vue实例的message'
+    }
+
+  })
+
+</script>
+
+</body>
+</html>

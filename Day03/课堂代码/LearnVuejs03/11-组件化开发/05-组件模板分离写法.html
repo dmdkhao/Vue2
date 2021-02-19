@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    * 组件的分离写法：
+      1. <script type="text/x-template">
+      2. <template></template>
+      * 以上两种写法均可以通过id绑定。
+-->
+
+<div id="app">
+  <cpn1></cpn1>
+  <cpn2></cpn2>
+</div>
+
+<!-- 1.javascript写法 -->
+<script type="text/x-template" id="cpn1">
+  <div>
+    <h2>cpn1标题</h2>
+    <p>cpn1内容</p>
+  </div>
+</script>
+
+<!-- 2.template写法 -->
+<template id="cpn2">
+  <div>
+    <h2>cpn2标题</h2>
+    <p>cpn2内容</p>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  Vue.component('cpn1',{
+    template: "#cpn1"
+  });
+
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好'
+    },
+    components: {
+      cpn2: {
+        template: "#cpn2"
+      }
+    }
+
+  })
+
+</script>
+
+</body>
+</html>
