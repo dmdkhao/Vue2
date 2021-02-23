@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+        * 组件访问，子组件访问父组件
+            * this.$parent.xxxxx : 访问父组件
+            * this.$root.xxxxxxx : 访问根组件
+-->
+<div id="app">
+  <cpn2></cpn2>
+</div>
+
+<template id="cpnT1">
+  <div>
+    <h2>子组件标题</h2>
+    <span>我是子组件</span>
+    <button @click="visitFather()">子访问父</button>
+    <button @click="visitRoot()">子访问根</button>
+    <button @click="visitFatherData()">子访问父组件的data</button>
+    <button @click="visitFatherMethod()">调用父组件的method</button>
+  </div>
+</template>
+
+<template id="cpnT2">
+  <div>
+    <h2>父组件标题</h2>
+    <span>我是父组件，但不是root</span>
+    <cpn1></cpn1>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  let cpn = Vue.component("cpn1",{
+    template: "#cpnT1",
+    methods: {
+      visitFather(){
+        console.log(this.$parent);
+      },
+      visitRoot(){
+        console.log(this.$root);
+      },
+      visitFatherMethod(){
+        this.$parent.printsomething();
+      },
+      visitFatherData(){
+        console.log(this.$parent.username);
+      }
+    }
+  })
+
+  let cpn2 = Vue.component("cpn2",{
+    template: "#cpnT2",
+    components: {
+      cpn
+    },
+    data() {
+      return {
+        username: "zhangdapao"
+      }
+    },
+    methods: {
+      printsomething(){
+        console.log("here is father's method");
+      }
+    }
+  })
+
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好'
+    },
+    components: {
+      cpn2
+    }
+
+  })
+
+</script>
+
+
+
+
+
+</body>
+</html>

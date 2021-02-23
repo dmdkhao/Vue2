@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <mycpn :pnum1="num1"
+         :pnum2="num2"
+         @ctfchangenum1="changeNum1"
+         @ctfchangenum2="changeNum2"/>
+</div>
+
+<template id="mycpnT1">
+  <div>
+    <h2>pnum1-{{pnum1}}</h2>
+    <h2>dnum1-{{dnum1}}</h2>
+    <input type="text" :value="dnum1" @input="changednum1">
+    <br>
+    <h2>pnum2-{{pnum2}}</h2>
+    <h2>dnum2-{{dnum2}}</h2>
+    <input type="text" :value="dnum2" @input="changednum2">
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  let mycpnC = Vue.component('mycpn',{
+    template: "#mycpnT1",
+    props: {
+      pnum1 : Number,
+      pnum2 : Number,
+    },
+    data(){
+      return {
+        dnum1: this.pnum1,
+        dnum2: this.pnum2
+      }
+    },
+    methods: {
+      changednum1(event){
+        this.dnum1 = event.target.value;
+        this.$emit("ctfchangenum1",this.dnum1);
+        //根据dnum1修改dnum2的值
+        this.dnum2 = this.dnum1 * 100;
+        this.$emit("ctfchangenum2",this.dnum2);
+      },
+      changednum2(event){
+        this.dnum2 = event.target.value;
+        this.$emit("ctfchangenum2",this.dnum2);
+        //根据dnum2修改dnum1的值
+        this.dnum1 = this.dnum2 / 100;
+        this.$emit("ctfchangenum1",this.dnum1);
+      }
+    }
+
+  })
+
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      num1: 0,
+      num2: 1
+    },
+    components: {
+      mycpnC
+    },
+    methods: {
+      changeNum1(number){
+        this.num1 = parseInt(number)
+      },
+      changeNum2(number){
+        this.num2 = parseInt(number)
+      }
+    }
+
+  })
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <mycpn :pnum1="num1"
+         :pnum2="num2"
+         @ctfchangenum1="changeNum1"
+         @ctfchangenum2="changeNum2"/>
+</div>
+
+<template id="mycpnT1">
+  <div>
+    <h2>pnum1-{{pnum1}}</h2>
+    <h2>dnum1-{{dnum1}}</h2>
+    <input type="text" v-model="dnum1">
+    <br>
+    <h2>pnum2-{{pnum2}}</h2>
+    <h2>dnum2-{{dnum2}}</h2>
+    <input type="text" v-model="dnum2">
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  let mycpnC = Vue.component('mycpn',{
+    template: "#mycpnT1",
+    props: {
+      pnum1 : Number,
+      pnum2 : Number,
+    },
+    data(){
+      return {
+        dnum1: this.pnum1,
+        dnum2: this.pnum2
+      }
+    },
+    watch: {
+      dnum1(newValue){
+        console.log("dnum1发生改变，新数字为：" + this.dnum1);
+        this.dnum2 = newValue * 100;
+        // this.$emit("ctfchangenum2",this.dnum2)
+      },
+      dnum2(newValue){
+        console.log("dnum2发生改变，新数字为：" + newValue);
+        // this.dnum1 = newValue / 100;
+        // this.$emit("ctfchangenum1",this.dnum1)
+      }
+    }
+
+
+  })
+
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      num1: 0,
+      num2: 1
+    },
+    components: {
+      mycpnC
+    },
+    methods: {
+      changeNum1(number){
+        this.num1 = parseFloat(number)
+      },
+      changeNum2(number){
+        this.num2 = parseFloat(number)
+      }
+    }
+
+  })
+
+</script>
+
+
+
+</body>
+</html>

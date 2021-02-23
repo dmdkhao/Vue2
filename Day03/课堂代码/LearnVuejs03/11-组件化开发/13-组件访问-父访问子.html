@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    * 组件访问，父访问子：不再通过组件通信的手段，而是父组件直接获取子组件中的某些对象或方法。
+        * $children：直接获取所有的子组件，当然，是数组形式，数组内数据类型为VueTemplate。
+            * 使用： this.$children即可获取所有子组件数组。
+            * 缺点：通过下标获取各个子组件，不够灵活。如果后续添加新的组件，则需要再次修改业务代码。
+        * $refs：给子组件进行标记，例如：<cpn1 ref="aaa">这就给这个子组件标记上了aaa。
+            * 使用： this.$refs
+            * 获取某一个确定的子组件：this.$refs.aaa  <-这个aaa就是之前在子组件上标记的aaa
+-->
+
+<div id="app">
+  <cpn1></cpn1>
+  <cpn1 ref="aaa"></cpn1>
+  <cpn1></cpn1>
+  <button @click="btnClick">按钮</button>
+</div>
+
+<template id="cpnT1">
+  <div>
+    <h2>我是子组件</h2>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  let cpn = Vue.component("cpn1",{
+    template: "#cpnT1",
+    methods: {
+      printMessage(){
+        console.log("cpn's printMessage()")
+      }
+    },
+    data(){
+      return {
+        number1: 100,
+        number2: 20
+      }
+    }
+  })
+
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好'
+    },
+    components: {
+      cpn
+    },
+    methods: {
+      btnClick(){
+        // 1. child获取子组件方式
+        // let child = this.$children;
+        // console.log(child)
+        // child[0].printMessage();
+        // console.log(child[0].number1)
+
+        //2. refs获取子组件方式
+        console.log(this.$refs)
+        let aaaComponent = this.$refs.aaa;
+        console.log(aaaComponent)
+        console.log(aaaComponent.number1)
+      }
+    }
+
+  })
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    * 组件通信-汇率案例
+        * 需求：
+            1.父组件和子组件
+            2.子组件接收父组件的两个data A,B
+            3.子组件修改数据时，父组件也跟着变
+            4.B始终是100倍的A
+            5.将两个数据A,B展示在页面中
+-->
+
+<div id="app">
+  <cpn1 :pnumber1="num1"
+        :pnumber2="num2"
+        @ctfnumber1="changeNum1"
+        @ctfnumber2="changeNum2"></cpn1>
+</div>
+
+<template id="cpnT1">
+  <div>
+    <h2>prop-{{pnumber1}}</h2>
+    <h2>data-{{dnumber1}}</h2>
+    <input type="text" :value="dnumber1" @input="changeNumber1">
+    <br>
+    <h2>prop-{{pnumber2}}</h2>
+    <h2>data-{{dnumber2}}</h2>
+    <input type="text" :value="dnumber2" @input="changeNumber2">
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  let cpn1 = {
+    template: "#cpnT1",
+    props: {
+      pnumber1: Number,
+      pnumber2: Number
+    },
+    data(){
+      return {
+        dnumber1: this.pnumber1,
+        dnumber2: this.pnumber2
+      }
+    },
+    methods: {
+      changeNumber1(event){
+        this.dnumber1 = event.target.value;
+        this.$emit("ctfnumber1",this.dnumber1);
+
+        //通过A修改B的值
+        this.dnumber2 = this.dnumber1 * 100;
+        this.$emit("ctfnumber2",this.dnumber2);
+      },
+      changeNumber2(event){
+        this.dnumber2 = event.target.value;
+        this.$emit("ctfnumber2",this.dnumber2);
+        //通过B修改A的值
+        this.dnumber1 = this.dnumber2 / 100;
+        this.$emit("ctfnumber1",this.dnumber1);
+      }
+    }
+  }
+
+
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好',
+      num1: 0,
+      num2: 1
+    },
+    components: {
+      cpn1
+    },
+    methods: {
+      changeNum1(number){
+        this.num1 = parseInt(number);
+      },
+      changeNum2(number){
+        this.num2 = parseInt(number);
+      }
+    }
+  })
+
+</script>
+
+
+
+
+</body>
+</html>
