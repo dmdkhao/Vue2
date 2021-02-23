@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+   * 如何让外面后拼接过来的内容使用到子组件中的数据呢？  -作用域插槽
+      * 绑定数据的原理：
+          1. template中slot标签通过v-bind将子组件中的数据绑定到slot的自定义属性上(本节示例中绑定到lang上)。
+          2. 使用组件时，使用template标签，在template标签中添加属性slot-scope(Vue2.5之后更改了写法，但因为兼容，这么写也没问题)，其值为slot。
+          3. template内容中通过 "slot.之前自定义属性名" 的方式即可调用。(本节中使用的时lang)。
+-->
+
+<div id="app">
+  <cpn1>
+    <template slot-scope="slot">
+      <span>{{slot.lang}}</span>
+    </template>
+  </cpn1>
+</div>
+
+<template id="cpnT1">
+  <div>
+    <h2>子组件标题</h2>
+    <span>子组件内容</span>
+    <slot :lang="languages">
+      <ul>
+        <li v-for="item in languages"> {{item}}</li>
+      </ul>
+    </slot>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  const cpn = Vue.component("cpn1",{
+    template: "#cpnT1",
+    data(){
+      return {
+        languages: ['java','c++','c','python'],
+        name: "suimaoyan",
+        age: 21
+      }
+    }
+  })
+
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好'
+    },
+    components: {
+      cpn
+    }
+
+  })
+
+</script>
+
+</body>
+</html>

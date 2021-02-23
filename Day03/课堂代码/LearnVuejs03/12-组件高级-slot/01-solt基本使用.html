@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    * slot-让组件更加灵活
+        * slot可以给组件中的内容预留出“插槽”供外部设置内容后插入。
+        * 基础用法：
+            * 在组件的模板中添加<slot>标签，在使用组件时，直接在使用组件标签的内部填写代码就可以将后续填写的代码拼到组件的slot标签中。
+            * slot标签内可以填写默认内容，当使用组件时，在组件标签中后添加的部分会将默认内容替换掉。
+-->
+
+<div id="app">
+  <cpn1></cpn1>
+  <cpn1><span>这里是插入的span元素</span></cpn1>
+  <cpn1><span>这里是插入的span元素</span></cpn1>
+  <cpn1><span>这里是插入的span元素</span></cpn1>
+</div>
+
+<template id="cpnT1">
+  <div>
+    <h2>here is cpn1's h2</h2>
+    <slot>这里是组件模板的默认slot部分</slot>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  // 准备组件对象
+  let cpn = Vue.component("cpn1",{
+    template: "#cpnT1",
+
+  })
+
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好'
+    },
+    components: {
+      cpn
+    }
+
+  })
+
+</script>
+</body>
+</html>

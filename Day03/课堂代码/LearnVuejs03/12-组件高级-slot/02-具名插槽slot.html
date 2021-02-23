@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+    * 如果一个组件模板中有多个slot标签，而外部只想针对性替换slot内容时，怎么板？ --具名插槽
+    * 具名插槽： 给插槽添加name属性
+        * 使用方法：
+            1. slot标签添加name属性。
+            2. 使用组件时，给要添加的内容标签中添加slot属性，值为要替换的slot标签的name属性的值。
+        * 注意：
+            1. 有了name属性的slot会默认显示出来。
+            2. 也就是说，当组件标签中slot的值与slot标签中name值相同时才会发生替换，否则不替换而且还会显示slot中的默认内容。
+-->
+<div id="app">
+  <cpn1></cpn1>
+  <cpn1><span slot="left">替</span></cpn1>
+  <cpn1><span>这里是插入的span元素</span></cpn1>
+  <cpn1><span>这里是插入的span元素</span></cpn1>
+  <cpn1><span>这里是插入的span元素</span></cpn1>
+</div>
+
+<template id="cpnT1">
+  <div>
+    <h2>here is cpn1's h2</h2>
+    <slot name="left">左</slot>
+    <slot name="center">中</slot>
+    <slot name="right">右</slot>
+    <slot>默认值</slot>
+    <slot></slot>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  // 准备组件对象
+  let cpn = Vue.component("cpn1",{
+    template: "#cpnT1",
+
+  })
+
+  const appEl = new Vue({
+    el: '#app',
+    data: {
+      message: '你好'
+    },
+    components: {
+      cpn
+    }
+
+  })
+
+</script>
+</body>
+</html>
